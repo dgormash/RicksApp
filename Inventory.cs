@@ -4,40 +4,40 @@ namespace RicksApp
 {
     class Inventory
     {
-        List<Guitar> guitars;
+        readonly List<Instrument> _inventory;
 
         public Inventory()
         {
-            guitars = new List<Guitar>();
+            _inventory = new List<Instrument>();
 
         }
 
-        public void AddGuitar(Guitar guitar)
+        public void AddInstrument(Instrument instrument)
         {
-            guitars.Add(guitar);
+            _inventory.Add(instrument);
         }
 
-        public Guitar GetGuitar(string serialNumber)
+        public Instrument GetInstrument(string serialNumber)
         {
-            foreach (var guitar in guitars)
+            foreach (var instrument in _inventory)
             {
-                if (guitar.SerialNumber == serialNumber)
+                if (instrument.SerialNumber == serialNumber)
                 {
-                    return guitar;
+                    return instrument;
                 }
             }
             return null;
         }
 
-        public List<Guitar> SearchGuitar(GuitarSpec searchGuitar)
+        public List<Instrument> SearchInstrument(InstrumentSpec searchedSpec)
         {
-            var matchingGuitar = new List<Guitar>();
-            foreach (var guitar in guitars)
+            var matchingInstrument = new List<Instrument>();
+            foreach (var instrument in _inventory)
             {
-                if(guitar.Spec.CompareSpecWith(searchGuitar))
-                matchingGuitar.Add(guitar);
+                if(instrument.Spec.CompareSpecWith(searchedSpec))
+                matchingInstrument.Add(instrument);
             }
-            return matchingGuitar;
+            return matchingInstrument;
         }
     }
 }

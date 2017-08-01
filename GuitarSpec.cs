@@ -1,46 +1,40 @@
 ﻿
 namespace RicksApp
 {
-    public class GuitarSpec
+    public class GuitarSpec : InstrumentSpec
     {
-        public Builder Builder { get; }
-
-        public string Model { get; }
-
-        public Type Type { get; }
-
-        public Wood BackWood { get; }
-
-        public Wood TopWood { get; }
-
         public StringCount NumStrings { get; }
 
-        public GuitarSpec(Builder builder, string model, Type type, Wood backWood, Wood topWood, StringCount numStrings)
+        public GuitarSpec(Builder builder, string model, Type type,  Wood backWood, Wood topWood, StringCount numString)
+            :
+                base(builder, model, type, backWood, topWood)
         {
-            Builder = builder;
-            Model = model;
-            Type = type;
-            BackWood = backWood;
-            TopWood = topWood;
-            NumStrings = numStrings;
+            NumStrings = numString;
         }
 
-        public bool CompareSpecWith(GuitarSpec spec)
+        public override bool CompareSpecWith(InstrumentSpec spec)
         {
-            if (Builder != spec.Builder)
+            if (!base.CompareSpecWith(spec))
+            {
                 return false;
-            if (Model != spec.Model)
+            }
+            if (!(spec is GuitarSpec))
+            {
                 return false;
-            if (Type != spec.Type)
+            }
+            var comparedSpec = (GuitarSpec) spec;
+            if (NumStrings != comparedSpec.NumStrings)
+            {
                 return false;
-            if (TopWood != spec.TopWood)
-                return false;
-            if (BackWood != spec.BackWood)
-                return false;
-            if (NumStrings != spec.NumStrings)
-                return false;
+            }
+
             return true;
+
         }
+
+        
+            
+        
     }
 
 }

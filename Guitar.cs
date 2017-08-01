@@ -1,19 +1,9 @@
 ﻿namespace RicksApp
 {
-    public class Guitar
+    public class Guitar:Instrument
     {
-        public Guitar(string serialNumber, double price,  GuitarSpec spec)
-        {
-            SerialNumber = serialNumber;
-            Price = price;
-            Spec = spec;
-            
-        }
+        public Guitar(string serialNumber, double price, GuitarSpec spec) : base(serialNumber, price, spec) {}
 
-        public string SerialNumber { get; }
 
-        public double Price { get; }
-
-        public GuitarSpec Spec { get; }
     }
 }
